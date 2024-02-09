@@ -1,5 +1,5 @@
 import input
-import slot
+
 
 class Player():
     money = 10

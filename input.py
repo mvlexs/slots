@@ -6,11 +6,11 @@ class Input():
     
 
     def inputYN(self):
-        x = input()
-        if x.lower() in ['yes','y']:
+        rawInput = input()
+        if rawInput.lower() in ['yes','y']:
             self.input = True
             return self.input
-        elif x.lower() in ['no','n']:
+        elif rawInput.lower() in ['no','n']:
             self.input = False
             return self.input
         else:
