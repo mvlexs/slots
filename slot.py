@@ -3,6 +3,7 @@ from collections import Counter
 from player import Player
 import input
 from result import Result
+import time
 
 prizelist = ['🍒','🍑','🍋','💎','💲']
 values = ['','','']
@@ -24,12 +25,13 @@ class Slot():
         self.values = values
 
     def roll(self,newPlayer):
-        newPlayer.money -= 10
+        newPlayer.money -= 5
         self.roll1 = random.choice(self.prizelist)
         self.roll2 = random.choice(self.prizelist)
         self.roll3 = random.choice(self.prizelist)
         self.values = [self.roll1,self.roll2,self.roll3]
         print(self.values)
+        time.sleep(1)
         result = self.checkWin()
         prize = self.checkPrize(result)
         newPlayer.money += prize
@@ -88,7 +90,9 @@ class Slot():
     def again(self,newPlayer):
         x = 1
         newInput = input.Input(0)
+        time.sleep(1.5)
         print("You now have " + str(newPlayer.money) + "$.")
+        time.sleep(1.5)
         print("Do you want to play again?\ny/n")
         while x == 1:
             newInput.inputYN()
