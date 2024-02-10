@@ -7,9 +7,6 @@ class Player():
     def __init__(self, money):
         self.money = money
 
-    def gamble(self):
-        self.money -= 1
-
     def tutorial(self):
         x = 1
         newInput = input.Input(0)
