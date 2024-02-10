@@ -23,7 +23,8 @@ class Slot():
         self.prizelist = prizelist
         self.values = values
 
-    def roll(self,player: Player):
+    def roll(self,newPlayer):
+        newPlayer.money -= 10
         self.roll1 = random.choice(self.prizelist)
         self.roll2 = random.choice(self.prizelist)
         self.roll3 = random.choice(self.prizelist)
@@ -31,16 +32,16 @@ class Slot():
         print(self.values)
         result = self.checkWin()
         prize = self.checkPrize(result)
-        player.money += prize
+        newPlayer.money += prize
 
-        self.again()
+        self.again(newPlayer)
 
     def checkWin(self) -> Result:
         #win_or_loss, winning_symbol, winning_count
 
         counts = Counter(self.values).most_common(1)[0]
         if counts [1] > 1:
-            this_result = Result(
+            result = Result(
                 True,
                 counts[0],
                 counts[1]
@@ -54,7 +55,8 @@ class Slot():
             print("Congrats, you win!")
         else:
             print("You lose! :(")
-
+            result = Result(False,"",1)
+        
         return result
     
 
@@ -63,19 +65,19 @@ class Slot():
             match result.symbol:
                 
                 case '🍑':
-                    return 5 * (result.count - 1)
+                    return 2 * (result.count - 1)
                 case '🍋':
-                    return 10 * (result.count - 1)
+                    return 4 * (result.count - 1)
                 case '🍒':
-                    return 25 * (result.count - 1)
+                    return 10 * (result.count - 1)
                 case '💎':
                     if result.count != 1:
-                        return 50 * (result.count - 1)
+                        return 30 * (result.count - 1)
                     else:
                         return 5
                 case '💲':
                     if result.count != 1:
-                        return 100 * (result.count - 1)
+                        return 75 * (result.count - 1)
                     else:
                         return 10
                 case _:
@@ -83,14 +85,15 @@ class Slot():
 
         return 0
 
-    def again(self):
+    def again(self,newPlayer):
         x = 1
         newInput = input.Input(0)
+        print("You now have " + str(newPlayer.money) + "$.")
         print("Do you want to play again?\ny/n")
         while x == 1:
             newInput.inputYN()
             if newInput.input == True:
-                self.roll()
+                self.roll(newPlayer)
                 x += 1
             elif newInput.input == False:
                 exit()
