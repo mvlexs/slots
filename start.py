@@ -2,11 +2,11 @@ import player
 import slot
 
 def start():
-    newPlayer = player.Player(10)
+    newPlayer = player.Player(50)
     newSlot = slot.Slot(0,0,0,0,slot.prizelist,slot.values)
     newPlayer.tutorial()
     newSlot.roll(newPlayer)
-    print(newPlayer.money)
+    
     
 
     
