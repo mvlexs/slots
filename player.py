@@ -3,10 +3,10 @@ import time
 
 
 class Player():
-    money = 10
+    money = int 
 
     def __init__(self, money):
-        self.money = money
+        self.money 
 
     def tutorial(self):
         x = 1

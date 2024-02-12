@@ -4,6 +4,7 @@ from player import Player
 import input
 from result import Result
 import time
+import save
 
 prizelist = ['🍒','🍑','🍋','💎','💲']
 values = ['','','']
@@ -35,6 +36,7 @@ class Slot():
         result = self.checkWin()
         prize = self.checkPrize(result)
         newPlayer.money += prize
+        save.save(newPlayer)
 
         self.again(newPlayer)
 
